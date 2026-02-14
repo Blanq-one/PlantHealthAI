@@ -1,44 +1,46 @@
-# Plant Disease Detection using CNN, MobileNet, and TFLite
+# PlantHealthAI
 
-This project involves detecting plant diseases using a combination of CNNs, MobileNet transfer learning, TensorFlow Lite, and Raspberry Pi camera integration.
+PlantHealthAI is a comprehensive system designed for the detection and classification of plant diseases. By leveraging Convolutional Neural Networks (CNNs), transfer learning with MobileNet, and TensorFlow Lite, the project provides a lightweight and efficient solution for real-time agricultural monitoring.
 
 ## Features
 
-- CNN-based custom model for initial classification
-- MobileNet + Dense layers for improved transfer learning
-- TFLite deployment for lightweight edge inference
-- PiCamera integration for real-time image capture
+- Custom CNN-based classification for targeted disease identification
+- Transfer learning using MobileNet for enhanced feature extraction and accuracy
+- TensorFlow Lite integration for optimized edge deployment
+- Raspberry Pi camera support for on-site image acquisition
 
-## Model Architectures
+## System Components
 
-### 1. CNN Model (`cnn_model.py`)
-- Convolutional layers → MaxPooling → Fully Connected layers
-- Optimized with Adam and trained for 5 epochs
-- Uses `binary_crossentropy` for two-class disease classification
+### Convolutional Neural Network (cnn_model.py)
+The custom CNN architecture is designed for binary disease classification. It utilizes a sequence of convolutional and pooling layers followed by fully connected layers, optimized using the Adam objective function and binary cross-entropy loss.
 
-### 2. MobileNet Model (`disease_model.py`)
-- Pre-trained MobileNet used as a feature extractor
-- Followed by custom Dense layers with Dropout
-- Optimized using categorical cross-entropy
+### Transfer Learning Module (disease_model.py)
+This component employs a pre-trained MobileNet model as a feature extractor. The network is augmented with custom dense layers and dropout for robust multi-class disease classification, utilizing categorical cross-entropy for training.
 
-### 3. TFLite Inference (`tflite_inference.py`)
-- Loads a `.tflite` model
-- Preprocesses test image using PIL
-- Predicts label and prints classification result
+### TensorFlow Lite Inference (tflite_inference.py)
+For deployment on resource-constrained devices, the models are converted to TensorFlow Lite format. This script handles model loading, image preprocessing via the PIL library, and efficient inference execution.
 
-## Raspberry Pi Camera
+### Real-Time Capture (pi_camera.py)
+A dedicated script for the Raspberry Pi environment that interfaces with the PiCamera module. It captures high-resolution images and saves them locally for immediate processing by the inference engine.
 
-- Script `pi_camera.py` captures an image using the PiCamera module.
-- Image is saved and used for real-time disease detection on-device.
+## Directory Structure
 
-## Files
+| File | Description |
+| :--- | :--- |
+| cnn_model.py | Custom CNN training and architecture definition |
+| disease_model.py | MobileNet transfer learning implementation |
+| tflite_inference.py | Optimized inference script for TFLite models |
+| pi_camera.py | Raspberry Pi camera integration utility |
 
-| File                | Description                               |
-|---------------------|-------------------------------------------|
-| `cnn_model.py`      | CNN training code                         |
-| `disease_model.py`  | MobileNet transfer learning code          |
-| `tflite_inference.py`| TensorFlow Lite classification script     |
-| `pi_camera.py`      | PiCamera image capture script             |
+## Technical Requirements
 
-## Requirements
-pip install tensorflow keras numpy pillow tflite-runtime
+The project requires Python 3.x and the following dependencies:
+
+- tensorflow
+- keras
+- numpy
+- pillow
+- tflite-runtime
+
+Installation can be performed using:
+`pip install tensorflow keras numpy pillow tflite-runtime`
